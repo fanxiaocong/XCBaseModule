@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'XCBaseModule_Example' do
+  pod 'XCBaseModule', :path => '../'
+
+  target 'XCBaseModule_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
