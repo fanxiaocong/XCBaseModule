@@ -1,0 +1,6 @@
+framework module XCBaseModule {
+  umbrella header "XCBaseModule-umbrella.h"
+
+  export *
+  module * { export * }
+}

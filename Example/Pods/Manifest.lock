@@ -1,0 +1,50 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - XCBaseModule (0.0.1):
+    - XCBaseModule/AppConfigure (= 0.0.1)
+    - XCBaseModule/Category (= 0.0.1)
+    - XCBaseModule/Network (= 0.0.1)
+  - XCBaseModule/AppConfigure (0.0.1):
+    - XCCategory (~> 1.0.6)
+  - XCBaseModule/Category (0.0.1):
+    - XCCategory (~> 1.0.6)
+  - XCBaseModule/Network (0.0.1):
+    - XCMacros (~> 1.0.2)
+    - XCNetworking (~> 0.0.2)
+  - XCCategory (1.0.8)
+  - XCMacros (1.0.2)
+  - XCNetworking (0.0.2):
+    - AFNetworking (~> 3.1.0)
+    - XCMacros (~> 1.0.2)
+
+DEPENDENCIES:
+  - XCBaseModule (from `../`)
+
+EXTERNAL SOURCES:
+  XCBaseModule:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  XCBaseModule: 5444e8419eab7e8c015ee3ce8703cd69f3b5860a
+  XCCategory: a8f630c77523305d4f681e41027e6b87934c884e
+  XCMacros: abf7c03e5128fea2e800887a7b25c82336c3940b
+  XCNetworking: 210617d4391bd361ea1c088385ed61f99d8a3d65
+
+PODFILE CHECKSUM: 439cd66f24b5ce190a777d087326c066415ad175
+
+COCOAPODS: 1.4.0

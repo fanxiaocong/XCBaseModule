@@ -1,0 +1,6 @@
+framework module XCNetworking {
+  umbrella header "XCNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}
