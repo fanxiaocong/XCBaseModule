@@ -1,4 +1,5 @@
 # XCBaseModule
+<<<<<<< HEAD
 
 [![CI Status](http://img.shields.io/travis/fanxiaocong/XCBaseModule.svg?style=flat)](https://travis-ci.org/fanxiaocong/XCBaseModule)
 [![Version](https://img.shields.io/cocoapods/v/XCBaseModule.svg?style=flat)](http://cocoapods.org/pods/XCBaseModule)
@@ -27,3 +28,6 @@ fanxiaocong, 1016697223@qq.com
 ## License
 
 XCBaseModule is available under the MIT license. See the LICENSE file for more info.
+=======
+基础组件，封装了网络请求，App 全局配置类
+>>>>>>> 67ca4ec33c74a2776ef8f24a752d9447502fe748
