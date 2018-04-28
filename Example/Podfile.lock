@@ -14,15 +14,15 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - XCBaseModule (0.0.1):
-    - XCBaseModule/AppConfigure (= 0.0.1)
-    - XCBaseModule/Category (= 0.0.1)
-    - XCBaseModule/Network (= 0.0.1)
-  - XCBaseModule/AppConfigure (0.0.1):
+  - XCBaseModule (0.0.2):
+    - XCBaseModule/AppConfigure (= 0.0.2)
+    - XCBaseModule/Category (= 0.0.2)
+    - XCBaseModule/Network (= 0.0.2)
+  - XCBaseModule/AppConfigure (0.0.2):
     - XCCategory (~> 1.0.6)
-  - XCBaseModule/Category (0.0.1):
+  - XCBaseModule/Category (0.0.2):
     - XCCategory (~> 1.0.6)
-  - XCBaseModule/Network (0.0.1):
+  - XCBaseModule/Network (0.0.2):
     - XCMacros (~> 1.0.2)
     - XCNetworking (~> 0.0.2)
   - XCCategory (1.0.8)
@@ -40,7 +40,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  XCBaseModule: 24d56a23f503df268123c11c8db70949bfa6a863
+  XCBaseModule: 3a8943a5b91c34dd021b07f1f017b574e6b66ccc
   XCCategory: a8f630c77523305d4f681e41027e6b87934c884e
   XCMacros: abf7c03e5128fea2e800887a7b25c82336c3940b
   XCNetworking: 210617d4391bd361ea1c088385ed61f99d8a3d65

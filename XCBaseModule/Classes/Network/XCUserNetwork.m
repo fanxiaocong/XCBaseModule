@@ -100,7 +100,7 @@
                         failure:^(NSURLSessionDataTask *task, NSError *error) {
         
                             /// 处理请求结果
-                            [self handleRequestResultWithTask:task result:error isSuccess:YES success:success failure:failure];
+                            [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
                         }];
 }
 
@@ -120,7 +120,7 @@
                          failure:^(NSURLSessionDataTask *task, NSError *error) {
                              
                              /// 处理请求结果
-                             [self handleRequestResultWithTask:task result:error isSuccess:YES success:success failure:failure];
+                             [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
                          }];
 }
 
@@ -146,7 +146,7 @@
                       failure:^(NSURLSessionDataTask *task, NSError *error) {
                           
                           /// 处理请求结果
-                          [self handleRequestResultWithTask:task result:error isSuccess:YES success:success failure:failure];
+                          [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
                       }];
 }
 
@@ -174,7 +174,7 @@
                       failure:^(NSURLSessionDataTask *task, NSError *error) {
                           
                           /// 处理请求结果
-                          [self handleRequestResultWithTask:task result:error isSuccess:YES success:success failure:failure];
+                          [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
                       }];
 }
 

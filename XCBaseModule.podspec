@@ -2,11 +2,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XCBaseModule'
-  s.version          = '0.0.1'
-  s.summary          = ' 基础组件，里面包含如下模块：\
-  AppConfigure：App全局配置类，配置App的基本参数 \
-  Category：App常用的一些分类 \
-  Network：网络请求基类 '
+  s.version          = '0.0.2'
+  s.summary          = ' 基础组件，里面包含如下模块：\n\t AppConfigure：App全局配置类，配置App的基本参数  \n\t Category：App常用的一些分类 \n\t Network：网络请求基类 '
 
   s.description      = <<-DESC
   XCBaseModule，基础组件，里面包含如下模块：
