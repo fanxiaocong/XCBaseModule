@@ -59,8 +59,6 @@ static id _instance = nil;
     
     /// 其他
     self.statusBarStyle = UIStatusBarStyleLightContent;
-    /// 服务器上存储图片的文件夹的名称
-    self.imageFileName  = @"shequn";
 }
 
 

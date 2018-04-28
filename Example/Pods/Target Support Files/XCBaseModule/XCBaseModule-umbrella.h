@@ -17,6 +17,7 @@
 #import "UIView+XCLoad.h"
 #import "UIViewController+XCLoad.h"
 #import "XCUserNetwork.h"
+#import "XCUserNetworkResult.h"
 #import "XCUserService.h"
 
 FOUNDATION_EXPORT double XCBaseModuleVersionNumber;

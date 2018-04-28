@@ -14,7 +14,28 @@
 #import <XCNetworking/XCNetworkStatus.h>
 
 
+@interface XCUserNetwork ()
+
+/// 处理网络请求的结果
+@property (strong, nonatomic) XCUserNetworkResult *resultM;
+
+@end
+
+
 @implementation XCUserNetwork
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        /// 开启网络检测
+        [XCNetworkStatus shareInstance];
+        /// 设置请求结果
+        self.resultM = [[XCUserNetworkResult alloc] init];
+    }
+    return self;
+}
+
 
 #pragma mark - 👀 Override 👀 💤
 
@@ -61,22 +82,25 @@
         return;
     }
     
+    self.resultM.result = result;
+    
     /// 根据外面调用者的配置进行处理
-    XCUserNetworkResult status = self.configureRequestResultBlock(task, result);
+    self.configureRequestResultBlock(task, self.resultM);
+    XCUserNetworkResultStatus status = self.resultM.status;
     
     switch (status)
     {
-        case XCUserNetworkResultSuccess:    // 成功
+        case XCUserNetworkResultStatusSuccess:    // 成功
         {
             if (success) { success(task, result); }
             break;
         }
-        case XCUserNetworkResultFailure:    // 失败
+        case XCUserNetworkResultStatusFailure:    // 失败
         {
-            if (failure) { failure(task, result); }
+            if (failure) { failure(task, self.resultM.message); }
             break;
         }
-        case XCUserNetworkResultPass:       // 不做处理
+        case XCUserNetworkResultStatusPass:       // 不做处理
         {
             break;
         }

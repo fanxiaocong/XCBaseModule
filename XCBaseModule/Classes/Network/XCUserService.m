@@ -34,9 +34,11 @@ static XCUserService *_instance = nil;
     return self;
 }
 
+#pragma mark - 👀 网络配置 👀 💤
+
 + (void)configureBaseURL:(NSString *)baseURL
-     prepareRequestBlock:(void (^)(XCUserNetwork *))prepareBlock
-      requestResultBlock:(XCUserNetworkResult (^)(NSURLSessionDataTask *, id))resultBlock
+     prepareRequestBlock:(void(^)(XCUserNetwork *userNetwork))prepareBlock
+      requestResultBlock:(void(^)(NSURLSessionDataTask *task, XCUserNetworkResult *resultM))resultBlock
 {
     XCUserService *service = [XCUserService shareInstance];
     service.network.baseURL = baseURL;

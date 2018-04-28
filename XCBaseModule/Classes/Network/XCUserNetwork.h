@@ -11,21 +11,12 @@
 
 #import <XCNetworking/XCNetworking.h>
 #import "AFNetworking.h"
+#import "XCUserNetworkResult.h"
 
 typedef void(^XCNetworkSuccessBlock) (NSURLSessionDataTask *task, id result);
-typedef void(^XCNetworkFailureBlock) (NSURLSessionDataTask *task, id reason);
+typedef void(^XCNetworkFailureBlock) (NSURLSessionDataTask *task, NSString *reason);
 typedef void(^XCNetworkProgressBlock) (NSProgress *progress);
 typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath, NSError *error);
-
-/**
- *  网络请求结果
- */
-typedef NS_ENUM(NSInteger, XCUserNetworkResult){
-    XCUserNetworkResultSuccess, /// 成功
-    XCUserNetworkResultFailure, /// 失败
-    XCUserNetworkResultPass /// 不做任何操作
-};
-
 
 
 @interface XCUserNetwork : XCNetworking
@@ -35,8 +26,15 @@ typedef NS_ENUM(NSInteger, XCUserNetworkResult){
 
 /// 配置请求前的操作：可以在此配置请求的基本参数（请求头，是否需要序列化等，每发起一次网络请求都会调用该方法）
 @property (copy, nonatomic) void(^configurePrepareReuqestBlock)(XCUserNetwork *userNetwork);
-/// 配置请求结果的回调，返回值控制请求的成功与失败
-@property (copy, nonatomic) XCUserNetworkResult(^configureRequestResultBlock)(NSURLSessionDataTask *task, id result);
+
+/// 配置请求结果的回调
+/// resultM：外部可以根据需要，解析 resultM 中的 result 属性，然后重新更新 resultM.message 和 resultM.status 属性
+//  resultM.status == XCUserNetworkResultStatusSuccess，将会回调 success
+//  resultM.status == XCUserNetworkResultStatusFailure，将会回调 failure
+//  resultM.status == XCUserNetworkResultStatusPass，不进行回调(不做任何操作)
+/// resultM.result 控制着 success 回调中的 result
+/// resultM.message 控制着 failure 回调中的 reason
+@property (copy, nonatomic) void(^configureRequestResultBlock)(NSURLSessionDataTask *task, XCUserNetworkResult *resultM);
 
 
 /**

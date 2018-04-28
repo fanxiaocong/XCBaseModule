@@ -49,18 +49,19 @@
 @property (strong, nonatomic) UIFont *navigationTitleFont;
 
 
-#pragma mark - 👀 其他 👀 💤
-/// 状态栏样式
-@property (assign, nonatomic) UIStatusBarStyle statusBarStyle;
-/// 返回按钮图片
+#pragma mark - 👀 图片 👀 💤
+/// 导航栏背景图片（如果设置了此参数，navigationBackgroundColor 将无效）
+@property (strong, nonatomic) UIImage *navigationBackgroundImage;
+/// 导航栏返回按钮图片
 @property (strong, nonatomic) UIImage *backImage;
-/// 关闭按钮图片
+/// 导航栏关闭按钮图片
 @property (strong, nonatomic) UIImage *closeImage;
 /// 占位图片
 @property (strong, nonatomic) UIImage *placeholderImage;
 
-/// 服务器上存储图片的文件夹的名称
-@property (copy, nonatomic) NSString *imageFileName;
 
+#pragma mark - 👀 其他 👀 💤
+/// 状态栏样式
+@property (assign, nonatomic) UIStatusBarStyle statusBarStyle;
 
 @end
