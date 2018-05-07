@@ -104,8 +104,9 @@
     }
 }];
 ```
-	- 您可以根据不同的模块为该类设置相应的分类，在分类中实现接口的请求参数和名称的配置。
-	
+
+   - 您可以根据不同的模块为该类设置相应的分类，在分类中实现接口的请求参数和名称的配置。
+     
 ```objc
 #import "XCUserService+XCTestService.h"
 
@@ -134,7 +135,23 @@
 ## Installation
 
 ### CocoaPods
+- 导入所有模块
 
 ```
 pod 'XCBaseModule'
+```
+- 只导入 AppConfigure 模块
+
+```
+pod 'XCBaseModule/AppConfigure'
+```
+- 只导入 分类 模块
+
+```
+pod 'XCBaseModule/Category'
+```
+- 只导入网络请求模块
+
+```
+pod 'XCBaseModule/Network'
 ```
