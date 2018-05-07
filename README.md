@@ -14,7 +14,7 @@
 |Blog|http://www.cnblogs.com/fanxiaocong|
 ***
 
-<br>
+
 ## Example
 
 ### `XCAppConfigure`&nbsp;App的全局配置
@@ -57,80 +57,79 @@
 - `<XCUserService.h>`&nbsp;接口服务类
 	- 网络请求的全局配置类，您可以在 AppDelegate 中使用该类来进行网络请求的全局配置，比如 BaseURL(接口请求总地址)、请求头的设置、请求结果的统一配置等等。
 	
- 		```objc
-		[XCUserService configureBaseURL:SERVICE_URL prepareRequestBlock:^(XCUserNetwork *userNetwork) {
-			/// 配置请求前的操作
+```objc
+[XCUserService configureBaseURL:SERVICE_URL prepareRequestBlock:^(XCUserNetwork *userNetwork) {
+    /// 配置请求前的操作
         
-   			// 设置请求头
-   			// [userNetwork.manager.requestSerializer setValue:@"JSESSIONID=7116FCB88BDB5B50A7268BF679A5E924" forHTTPHeaderField:@"Cookie"];
-			// userNetwork.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-			// userNetwork.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", nil];
-   } requestResultBlock:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
+    // 设置请求头
+    // [userNetwork.manager.requestSerializer setValue:@"JSESSIONID=7116FCB88BDB5B50A7268BF679A5E924" forHTTPHeaderField:@"Cookie"];
+    // userNetwork.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    // userNetwork.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", nil];
         
-        /// 配置请求完成的回调，如果后台接口返回的数据比较 “规范”，则可以在此处进行统一配置
+} requestResultBlock:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
         
-        /// ***测试***
-        if ([resultM.result isKindOfClass:[NSError class]]) {
-            /// 后台接口报错
-            // 解析错误...略
-            resultM.message = @"获取数据失败";
+    /// 配置请求完成的回调，如果后台接口返回的数据比较 “规范”，则可以在此处进行统一配置
+    
+    /// ***测试***
+    if ([resultM.result isKindOfClass:[NSError class]]) {
+        /// 后台接口报错
+        // 解析错误...略
+        resultM.message = @"获取数据失败";
+        resultM.status = XCUserNetworkResultStatusFailure;
+        return;
+    }
+    
+    /// 这里假设根据 code 的值来进行处理：code=0 表示成功； code=1 示登录失效； 其他表示失败
+    switch ([resultM.result[@"code"] integerValue]) {
+        case 0: // 成功
+        {
+            NSLog(@"请求成功");
+            resultM.status = XCUserNetworkResultStatusSuccess;
+            break;
+        }
+        case 1: // 登录失效
+        {
+            NSLog(@"登录失效了，请示重新登录");
+            resultM.status = XCUserNetworkResultStatusPass;
+            resultM.message = @"您的账号在其他设备上登录，请重新登录";
+            break;
+        }
+        default: // 失败
+        {
+            NSLog(@"请求失败");
             resultM.status = XCUserNetworkResultStatusFailure;
-            return;
+            resultM.message = resultM.result[@"message"];
+            break;
         }
-        
-        /// 这里假设根据 code 的值来进行处理：code=0 表示成功； code=1 示登录失效； 其他表示失败
-        switch ([resultM.result[@"code"] integerValue]) {
-            case 0: // 成功
-            {
-                NSLog(@"请求成功");
-                resultM.status = XCUserNetworkResultStatusSuccess;
-                break;
-            }
-            case 1: // 登录失效
-            {
-                NSLog(@"登录失效了，请示重新登录");
-                resultM.status = XCUserNetworkResultStatusPass;
-                resultM.message = @"您的账号在其他设备上登录，请重新登录";
-                break;
-            }
-            default: // 失败
-            {
-                NSLog(@"请求失败");
-                resultM.status = XCUserNetworkResultStatusFailure;
-                resultM.message = resultM.result[@"message"];
-                break;
-            }
-        }
-    }];
-	 ```
-	 <br>
+    }
+}];
+```
 	- 您可以根据不同的模块为该类设置相应的分类，在分类中实现接口的请求参数和名称的配置。
 	
-		```objc
-		#import "XCUserService+XCTestService.h"
+```objc
+#import "XCUserService+XCTestService.h"
 
-		@implementation XCUserService (XCTestService)
+@implementation XCUserService (XCTestService)
 
-		- (void)testNetworkServiceWithUserId:(NSString *)userId
-                               token:(NSString *)token
-                             success:(XCNetworkSuccessBlock)success
-                             failure:(XCNetworkFailureBlock)failure
-		{
-   			NSDictionary *params = @{
-                             @"userId" : userId,
-                             @"token"  : token
-                             };
-   
-      		[self.network postWithAction:@"api/getuserinfo" params:params success:^(NSURLSessionDataTask *task, id result) {
-        
-    		} failure:^(NSURLSessionDataTask *task, NSString *reason) {
-        
-    		}];
-		}
+- (void)testNetworkServiceWithUserId:(NSString *)userId
+                       token:(NSString *)token
+                     success:(XCNetworkSuccessBlock)success
+                     failure:(XCNetworkFailureBlock)failure
+{
+    NSDictionary *params = @{
+                     @"userId" : userId,
+                     @"token"  : token
+                     };
 
-		@end	
-	``` 
-<br>
+    [self.network postWithAction:@"api/getuserinfo" params:params success:^(NSURLSessionDataTask *task, id result) {
+
+    } failure:^(NSURLSessionDataTask *task, NSString *reason) {
+
+    }];
+}
+
+@end
+```
 
 ## Installation
 
