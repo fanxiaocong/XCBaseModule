@@ -145,12 +145,12 @@ pod 'XCBaseModule'
 ```
 pod 'XCBaseModule/AppConfigure'
 ```
-- 只导入 分类 模块
+- 只导入 Category 模块
 
 ```
 pod 'XCBaseModule/Category'
 ```
-- 只导入网络请求模块
+- 只导入 Network 模块
 
 ```
 pod 'XCBaseModule/Network'
