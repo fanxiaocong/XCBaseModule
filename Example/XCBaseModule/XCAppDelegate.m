@@ -7,12 +7,14 @@
 //
 
 #import "XCAppDelegate.h"
+#import "XCAppDelegate+XCNetwork.h"
 
 @implementation XCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    /// 配置网络请求
+    [self net_application:application didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 

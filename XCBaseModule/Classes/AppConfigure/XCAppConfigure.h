@@ -7,7 +7,7 @@
 
 
 /*
- *  备注：App 全局配置类(单例) 🐾
+ *  备注：App 全局配置类 🐾
  */
 
 #import <UIKit/UIKit.h>
@@ -15,8 +15,10 @@
 
 @interface XCAppConfigure : NSObject
 
-
 + (instancetype)shareInstance;
+
+/// 配置 App 的全局参数
++ (void)configureApplication:(void(^)(XCAppConfigure *configure))callBack;
 
 
 #pragma mark - 👀 颜色 👀 💤

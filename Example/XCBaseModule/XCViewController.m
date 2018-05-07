@@ -7,6 +7,8 @@
 //
 
 #import "XCViewController.h"
+#import "XCUserService+XCTestService.h"
+
 
 @interface XCViewController ()
 
@@ -17,13 +19,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    /// 发送网络请求
+    [self sendRequest];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - 🛰 🌐 Network Method 🌐
+
+- (void)sendRequest
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[XCUserService shareInstance] testNetworkServiceWithUserId:@"" token:@"" success:^(NSURLSessionDataTask *task, id result) {
+        
+    } failure:^(NSURLSessionDataTask *task, NSString *reason) {
+        
+    }];
 }
 
 @end

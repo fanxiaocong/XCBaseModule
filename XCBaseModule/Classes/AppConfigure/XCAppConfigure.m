@@ -61,5 +61,15 @@ static id _instance = nil;
     self.statusBarStyle = UIStatusBarStyleLightContent;
 }
 
+#pragma mark - 🔓 👀 Public Method 👀
+
+/// 配置 App 的全局参数
++ (void)configureApplication:(void(^)(XCAppConfigure *configure))callBack
+{
+    XCAppConfigure *appConfig = [XCAppConfigure shareInstance];
+    if (callBack) {
+        callBack(appConfig);
+    }
+}
 
 @end

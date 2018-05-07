@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2CDEE420A0209A00C61E83 /* XCAppDelegate+XCNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CDEE320A0209A00C61E83 /* XCAppDelegate+XCNetwork.m */; };
+		1E2CDEE720A0258B00C61E83 /* XCAppDelegate+XCConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CDEE620A0258B00C61E83 /* XCAppDelegate+XCConfigure.m */; };
+		1E2CDEEA20A04AFA00C61E83 /* XCUserService+XCTestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CDEE920A04AFA00C61E83 /* XCUserService+XCTestService.m */; };
 		4F3916C658B977A0EE00AFE9 /* Pods_XCBaseModule_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF5020029C2156ED06DF1AB /* Pods_XCBaseModule_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -37,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E2CDEE220A0209A00C61E83 /* XCAppDelegate+XCNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCAppDelegate+XCNetwork.h"; sourceTree = "<group>"; };
+		1E2CDEE320A0209A00C61E83 /* XCAppDelegate+XCNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XCAppDelegate+XCNetwork.m"; sourceTree = "<group>"; };
+		1E2CDEE520A0258B00C61E83 /* XCAppDelegate+XCConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCAppDelegate+XCConfigure.h"; sourceTree = "<group>"; };
+		1E2CDEE620A0258B00C61E83 /* XCAppDelegate+XCConfigure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XCAppDelegate+XCConfigure.m"; sourceTree = "<group>"; };
+		1E2CDEE820A04AFA00C61E83 /* XCUserService+XCTestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCUserService+XCTestService.h"; sourceTree = "<group>"; };
+		1E2CDEE920A04AFA00C61E83 /* XCUserService+XCTestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XCUserService+XCTestService.m"; sourceTree = "<group>"; };
 		3BF5020029C2156ED06DF1AB /* Pods_XCBaseModule_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XCBaseModule_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* XCBaseModule_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XCBaseModule_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,9 +143,15 @@
 			children = (
 				6003F59C195388D20070C39A /* XCAppDelegate.h */,
 				6003F59D195388D20070C39A /* XCAppDelegate.m */,
+				1E2CDEE520A0258B00C61E83 /* XCAppDelegate+XCConfigure.h */,
+				1E2CDEE620A0258B00C61E83 /* XCAppDelegate+XCConfigure.m */,
+				1E2CDEE220A0209A00C61E83 /* XCAppDelegate+XCNetwork.h */,
+				1E2CDEE320A0209A00C61E83 /* XCAppDelegate+XCNetwork.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* XCViewController.h */,
 				6003F5A6195388D20070C39A /* XCViewController.m */,
+				1E2CDEE820A04AFA00C61E83 /* XCUserService+XCTestService.h */,
+				1E2CDEE920A04AFA00C61E83 /* XCUserService+XCTestService.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -208,7 +223,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				EDB7557E930EABAD782FF77E /* [CP] Embed Pods Frameworks */,
-				2E3D77B68448E0CA45D7B60D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,8 +241,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				D1E62E5DFCFFC83B3B686A65 /* [CP] Embed Pods Frameworks */,
-				AF605C87152B1F7910CFCF1B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,21 +327,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2E3D77B68448E0CA45D7B60D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCBaseModule_Example/Pods-XCBaseModule_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		319B2E5EB958F033C92807EF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,36 +343,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF605C87152B1F7910CFCF1B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCBaseModule_Tests/Pods-XCBaseModule_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1E62E5DFCFFC83B3B686A65 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCBaseModule_Tests/Pods-XCBaseModule_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EDB7557E930EABAD782FF77E /* [CP] Embed Pods Frameworks */ = {
@@ -410,8 +377,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* XCAppDelegate.m in Sources */,
+				1E2CDEE720A0258B00C61E83 /* XCAppDelegate+XCConfigure.m in Sources */,
 				6003F5A7195388D20070C39A /* XCViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				1E2CDEEA20A04AFA00C61E83 /* XCUserService+XCTestService.m in Sources */,
+				1E2CDEE420A0209A00C61E83 /* XCAppDelegate+XCNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
