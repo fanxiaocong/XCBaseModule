@@ -19,6 +19,8 @@
 #import "XCUserNetwork.h"
 #import "XCUserNetworkResult.h"
 #import "XCUserService.h"
+#import "XCUserInformationTool.h"
+#import "XCVersionUpdateTool.h"
 
 FOUNDATION_EXPORT double XCBaseModuleVersionNumber;
 FOUNDATION_EXPORT const unsigned char XCBaseModuleVersionString[];

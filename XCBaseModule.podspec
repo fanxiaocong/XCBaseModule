@@ -3,13 +3,14 @@
 Pod::Spec.new do |s|
   s.name             = 'XCBaseModule'
   s.version          = '0.0.4'
-  s.summary          = ' 基础组件，里面包含如下模块：AppConfigure：App全局配置类，配置App的基本参数；Category：App常用的一些分类；Network：网络请求基类 '
+  s.summary          = ' 基础组件，里面包含如下模块：AppConfigure：App全局配置类，配置App的基本参数；Category：App常用的一些分类；Network：网络请求基类；Tools：工具类'
 
   s.description      = <<-DESC
   XCBaseModule，基础组件，里面包含如下模块：
     AppConfigure：App全局配置类，配置App的基本参数
     Category：App常用的一些分类
     Network：网络请求基类
+    Tools：工具类（登录账号缓存、版本更新）
                        DESC
 
   s.homepage         = 'https://github.com/fanxiaocong/XCBaseModule'
@@ -38,6 +39,11 @@ Pod::Spec.new do |s|
       net.dependency 'XCMacros', '~> 1.0.2'
       net.dependency 'XCNetworking', '~> 0.0.2'
       net.source_files = 'XCBaseModule/Classes/Network/**/*'
+  end
+  
+  # 工具
+  s.subspec 'Tools' do |tool|
+      tool.source_files = 'XCBaseModule/Classes/Tools/**/*'
   end
 
 end

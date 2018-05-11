@@ -132,26 +132,36 @@
 @end
 ```
 
+### `Tools`&nbsp;常用工具
+- `<XCUserInformationTool.h>`&nbsp;用户账号管理类
+- `<XCVersionUpdateTool.h>`&nbsp;检测版本工具类
+
+
 ## Installation
 
 ### CocoaPods
 - 导入所有模块
 
-```
+```objc
 pod 'XCBaseModule'
 ```
 - 只导入 AppConfigure 模块
 
-```
+```objc
 pod 'XCBaseModule/AppConfigure'
 ```
 - 只导入 Category 模块
 
-```
+```objc
 pod 'XCBaseModule/Category'
 ```
 - 只导入 Network 模块
 
-```
+```objc
 pod 'XCBaseModule/Network'
+```
+- 只导入 Tools 模块
+
+```objc
+pod 'XCBaseModule/Tools'
 ```
