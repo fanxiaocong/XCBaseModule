@@ -26,7 +26,8 @@ PODS:
   - XCBaseModule/Network (0.0.5):
     - XCMacros (~> 1.0.2)
     - XCNetworking (~> 0.0.2)
-  - XCBaseModule/Tools (0.0.5)
+  - XCBaseModule/Tools (0.0.5):
+    - XCMacros (~> 1.0.2)
   - XCCategory (1.0.8)
   - XCMacros (1.0.2)
   - XCNetworking (0.0.2):
@@ -49,7 +50,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  XCBaseModule: a86101414cc8159249444266d0b398842cf97731
+  XCBaseModule: d3bdb336e65f2754a0c40831593c91f94920d6c6
   XCCategory: a8f630c77523305d4f681e41027e6b87934c884e
   XCMacros: abf7c03e5128fea2e800887a7b25c82336c3940b
   XCNetworking: 210617d4391bd361ea1c088385ed61f99d8a3d65

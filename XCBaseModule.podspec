@@ -44,6 +44,7 @@ Pod::Spec.new do |s|
   # 工具
   s.subspec 'Tools' do |tool|
       tool.source_files = 'XCBaseModule/Classes/Tools/**/*'
+      tool.dependency 'XCMacros', '~> 1.0.2'
   end
 
 end
