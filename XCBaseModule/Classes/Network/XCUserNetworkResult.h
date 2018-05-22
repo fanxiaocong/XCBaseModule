@@ -27,6 +27,8 @@ typedef NS_ENUM(NSInteger, XCUserNetworkResultStatus){
 
 /// 请求结果（网络请求返回的原始数据）
 @property (strong, nonatomic) id result;
+/// 请求结果状态码
+@property (assign, nonatomic) NSInteger resultCode;
 /// 网络请求的状态
 @property (assign, nonatomic) XCUserNetworkResultStatus status;
 /// 提示语

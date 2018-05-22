@@ -66,6 +66,7 @@
     /// 当前没有网络
     if (![XCNetworkStatus shareInstance].haveNetwork) {
         if (failure) {
+            _resultCode = task.error.code;
             failure(task, @"网络连接失败，请检查网络");
         }
         return;
@@ -74,11 +75,17 @@
     /// 当前没有对请求结果进行处理，采用默认的处理
     if (!self.configureRequestResultBlock) {
         if (isSuccess) {
-            if (success) { success(task, result); }
+            if (success) {
+                _resultCode = 200;
+                success(task, result);
+            }
             return;
         }
         
-        if (failure) { failure(task, @"获取数据失败"); };
+        if (failure) {
+            _resultCode = task.error.code;
+            failure(task, @"获取数据失败");
+        };
         return;
     }
     
@@ -87,12 +94,15 @@
     /// 根据外面调用者的配置进行处理
     self.configureRequestResultBlock(task, self.resultM);
     XCUserNetworkResultStatus status = self.resultM.status;
+    _resultCode = self.resultM.resultCode;
     
     switch (status)
     {
         case XCUserNetworkResultStatusSuccess:    // 成功
         {
-            if (success) { success(task, result); }
+            if (success) {
+                success(task, result);
+            }
             break;
         }
         case XCUserNetworkResultStatusFailure:    // 失败

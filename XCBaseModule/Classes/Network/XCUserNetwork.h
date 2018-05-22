@@ -23,6 +23,8 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
 
 /// 接口请求总地址
 @property (copy, nonatomic) NSString *baseURL;
+/// 请求状态码
+@property (assign, nonatomic, readonly) NSInteger resultCode;
 
 /// 配置请求前的操作：可以在此配置请求的基本参数（请求头，是否需要序列化等，每发起一次网络请求都会调用该方法）
 @property (copy, nonatomic) void(^configurePrepareReuqestBlock)(XCUserNetwork *userNetwork);
@@ -34,6 +36,7 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
 //  resultM.status == XCUserNetworkResultStatusPass，不进行回调(不做任何操作)
 /// resultM.result 控制着 success 回调中的 result
 /// resultM.message 控制着 failure 回调中的 reason
+/// resultM.resultCode 请求结果的状态码
 @property (copy, nonatomic) void(^configureRequestResultBlock)(NSURLSessionDataTask *task, XCUserNetworkResult *resultM);
 
 

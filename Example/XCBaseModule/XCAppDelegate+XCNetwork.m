@@ -41,10 +41,13 @@
             // 解析错误...略
             resultM.message = @"获取数据失败";
             resultM.status = XCUserNetworkResultStatusFailure;
+            resultM.resultCode = ((NSError *)resultM).code;
             return;
         }
         
         /// 这里假设根据 code 的值来进行处理：code=0 表示成功； code=1 示登录失效； 其他表示失败
+        resultM.resultCode = [resultM.result[@"code"] integerValue];
+        
         switch ([resultM.result[@"code"] integerValue]) {
             case 0: // 成功
             {
