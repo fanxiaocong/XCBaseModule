@@ -25,7 +25,7 @@
  */
 - (void)testNetworkServiceWithUserId:(NSString *)userId
                                token:(NSString *)token
-                             success:(XCNetworkSuccessBlock)success
-                             failure:(XCNetworkFailureBlock)failure;
+                             success:(XCNetworkResultBlock)success
+                             failure:(XCNetworkResultBlock)failure;
 
 @end

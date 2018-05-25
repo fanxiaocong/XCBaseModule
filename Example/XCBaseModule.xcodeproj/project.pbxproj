@@ -262,6 +262,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = fanxiaocong;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 37L38B7YGT;
+						ProvisioningStyle = Manual;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -509,12 +513,16 @@
 			baseConfigurationReference = FDF6E67884E9D467BD31B1CD /* Pods-XCBaseModule_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 37L38B7YGT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XCBaseModule/XCBaseModule-Prefix.pch";
 				INFOPLIST_FILE = "XCBaseModule/XCBaseModule-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eling.secretary.yunlinlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e6618faf-c02c-4b66-ba44-7107a7207d7d";
+				PROVISIONING_PROFILE_SPECIFIER = YunLinLifeSecretaryDevelopment;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -524,12 +532,15 @@
 			baseConfigurationReference = 82ED5FD11C0D9A98DE531267 /* Pods-XCBaseModule_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XCBaseModule/XCBaseModule-Prefix.pch";
 				INFOPLIST_FILE = "XCBaseModule/XCBaseModule-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eling.secretary.yunlinlife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

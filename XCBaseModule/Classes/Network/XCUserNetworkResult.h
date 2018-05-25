@@ -33,5 +33,7 @@ typedef NS_ENUM(NSInteger, XCUserNetworkResultStatus){
 @property (assign, nonatomic) XCUserNetworkResultStatus status;
 /// 提示语
 @property (copy, nonatomic) NSString *message;
+/// 拓展字段（如果需要传递其他额外的数据，可以使用此参数）
+@property (strong, nonatomic) NSDictionary *ext;
 
 @end

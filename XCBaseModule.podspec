@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   # 网络
   s.subspec 'Network' do |net|
       net.dependency 'XCMacros', '~> 1.0.2'
-      net.dependency 'XCNetworking', '~> 0.0.2'
+      net.dependency 'XCNetworking', '~> 0.0.3'
       net.source_files = 'XCBaseModule/Classes/Network/**/*'
   end
   

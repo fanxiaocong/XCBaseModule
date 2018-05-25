@@ -13,8 +13,7 @@
 #import "AFNetworking.h"
 #import "XCUserNetworkResult.h"
 
-typedef void(^XCNetworkSuccessBlock) (NSURLSessionDataTask *task, id result);
-typedef void(^XCNetworkFailureBlock) (NSURLSessionDataTask *task, NSString *reason);
+typedef void(^XCNetworkResultBlock) (NSURLSessionDataTask *task, XCUserNetworkResult *resultM);
 typedef void(^XCNetworkProgressBlock) (NSProgress *progress);
 typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath, NSError *error);
 
@@ -23,8 +22,6 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
 
 /// 接口请求总地址
 @property (copy, nonatomic) NSString *baseURL;
-/// 请求状态码
-@property (assign, nonatomic, readonly) NSInteger resultCode;
 
 /// 配置请求前的操作：可以在此配置请求的基本参数（请求头，是否需要序列化等，每发起一次网络请求都会调用该方法）
 @property (copy, nonatomic) void(^configurePrepareReuqestBlock)(XCUserNetwork *userNetwork);
@@ -37,6 +34,7 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
 /// resultM.result 控制着 success 回调中的 result
 /// resultM.message 控制着 failure 回调中的 reason
 /// resultM.resultCode 请求结果的状态码
+/// resultM.ext 拓展字段数据(如果需要传递其他额外的数据，可以使用此参数)
 @property (copy, nonatomic) void(^configureRequestResultBlock)(NSURLSessionDataTask *task, XCUserNetworkResult *resultM);
 
 
@@ -48,8 +46,8 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
  */
 - (void)getWithAction:(NSString *)action
                params:(NSDictionary *)params
-              success:(XCNetworkSuccessBlock)success
-              failure:(XCNetworkFailureBlock)failure;
+              success:(XCNetworkResultBlock)success
+              failure:(XCNetworkResultBlock)failure;
 
 /**
  *  POST 请求
@@ -59,8 +57,8 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
  */
 - (void)postWithAction:(NSString *)action
                 params:(NSDictionary *)params
-               success:(XCNetworkSuccessBlock)success
-               failure:(XCNetworkFailureBlock)failure;
+               success:(XCNetworkResultBlock)success
+               failure:(XCNetworkResultBlock)failure;
 
 
 /**
@@ -77,8 +75,8 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
                        images:(NSArray<UIImage *> *)images
                 directoryName:(NSString *)directoryName
                      progress:(XCNetworkProgressBlock)progress
-                      success:(XCNetworkSuccessBlock)success
-                      failure:(XCNetworkFailureBlock)failure;
+                      success:(XCNetworkResultBlock)success
+                      failure:(XCNetworkResultBlock)failure;
 
 
 /**
@@ -97,8 +95,8 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
                 directoryName:(NSString *)directoryName
                     fileNames:(NSArray<NSString *> *)fileNames
                      progress:(XCNetworkProgressBlock)progress
-                      success:(XCNetworkSuccessBlock)success
-                      failure:(XCNetworkFailureBlock)failure;
+                      success:(XCNetworkResultBlock)success
+                      failure:(XCNetworkResultBlock)failure;
 
 /**
  *  下载文件

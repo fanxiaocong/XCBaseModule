@@ -29,7 +29,7 @@ static XCNetworkStatus *_instance = nil;
 
 - (void)dealloc
 {
-    [_reachDetector startMonitoring];
+    [_reachDetector stopMonitoring];
     _reachDetector = nil;
 }
 

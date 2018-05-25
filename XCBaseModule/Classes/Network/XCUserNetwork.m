@@ -60,14 +60,18 @@
 - (void)handleRequestResultWithTask:(NSURLSessionDataTask *)task
                              result:(id)result
                           isSuccess:(BOOL)isSuccess
-                            success:(XCNetworkSuccessBlock)success
-                            failure:(XCNetworkFailureBlock)failure;
+                            success:(XCNetworkResultBlock)success
+                            failure:(XCNetworkResultBlock)failure;
 {
+    self.resultM.result = result;
+    
     /// 当前没有网络
     if (![XCNetworkStatus shareInstance].haveNetwork) {
         if (failure) {
-            _resultCode = task.error.code;
-            failure(task, @"网络连接失败，请检查网络");
+            self.resultM.resultCode = task.error.code;
+            self.resultM.message = @"网络连接失败，请检查网络";
+            self.resultM.status = XCUserNetworkResultStatusFailure;
+            failure(task, self.resultM);
         }
         return;
     }
@@ -76,38 +80,39 @@
     if (!self.configureRequestResultBlock) {
         if (isSuccess) {
             if (success) {
-                _resultCode = 200;
-                success(task, result);
+                self.resultM.resultCode = 200;
+                self.resultM.message = @"请求成功";
+                self.resultM.status = XCUserNetworkResultStatusSuccess;
+                success(task, self.resultM);
             }
             return;
         }
         
         if (failure) {
-            _resultCode = task.error.code;
-            failure(task, @"获取数据失败");
+            self.resultM.resultCode = -1;
+            self.resultM.message = @"获取数据失败";
+            self.resultM.status = XCUserNetworkResultStatusFailure;
+            failure(task, self.resultM);
         };
         return;
     }
     
-    self.resultM.result = result;
-    
     /// 根据外面调用者的配置进行处理
     self.configureRequestResultBlock(task, self.resultM);
     XCUserNetworkResultStatus status = self.resultM.status;
-    _resultCode = self.resultM.resultCode;
     
     switch (status)
     {
         case XCUserNetworkResultStatusSuccess:    // 成功
         {
             if (success) {
-                success(task, result);
+                success(task, self.resultM);
             }
             break;
         }
         case XCUserNetworkResultStatusFailure:    // 失败
         {
-            if (failure) { failure(task, self.resultM.message); }
+            if (failure) { failure(task, self.resultM); }
             break;
         }
         case XCUserNetworkResultStatusPass:       // 不做处理
@@ -121,8 +126,8 @@
 
 - (void)getWithAction:(NSString *)action
                params:(NSDictionary *)params
-              success:(XCNetworkSuccessBlock)success
-              failure:(XCNetworkFailureBlock)failure
+              success:(XCNetworkResultBlock)success
+              failure:(XCNetworkResultBlock)failure
 {
     [self sendGetRequestWithURL:[self.baseURL stringByAppendingString:action]
                      parameters:params
@@ -141,8 +146,8 @@
 
 - (void)postWithAction:(NSString *)action
                 params:(NSDictionary *)params
-               success:(XCNetworkSuccessBlock)success
-               failure:(XCNetworkFailureBlock)failure
+               success:(XCNetworkResultBlock)success
+               failure:(XCNetworkResultBlock)failure
 {
     [self sendPostRequestWithURL:[self.baseURL stringByAppendingString:action]
                       parameters:params
@@ -164,8 +169,8 @@
                        images:(NSArray<UIImage *> *)images
                 directoryName:(NSString *)directoryName
                      progress:(XCNetworkProgressBlock)progress
-                      success:(XCNetworkSuccessBlock)success
-                      failure:(XCNetworkFailureBlock)failure
+                      success:(XCNetworkResultBlock)success
+                      failure:(XCNetworkResultBlock)failure
 {
     [self uploadImagesWithURL:[self.baseURL stringByAppendingString:action]
                    parameters:params
@@ -191,8 +196,8 @@
                 directoryName:(NSString *)directoryName
                     fileNames:(NSArray<NSString *> *)fileNames
                      progress:(XCNetworkProgressBlock)progress
-                      success:(XCNetworkSuccessBlock)success
-                      failure:(XCNetworkFailureBlock)failure
+                      success:(XCNetworkResultBlock)success
+                      failure:(XCNetworkResultBlock)failure
 {
     [self uploadImagesWithURL:[self.baseURL stringByAppendingString:action]
                    parameters:params

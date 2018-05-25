@@ -17,17 +17,17 @@
 
 - (void)testNetworkServiceWithUserId:(NSString *)userId
                                token:(NSString *)token
-                             success:(XCNetworkSuccessBlock)success
-                             failure:(XCNetworkFailureBlock)failure
+                             success:(XCNetworkResultBlock)success
+                             failure:(XCNetworkResultBlock)failure
 {
     NSDictionary *params = @{
                              @"userId" : userId,
                              @"token"  : token
                              };
     
-    [self.network postWithAction:@"api/getuserinfo" params:params success:^(NSURLSessionDataTask *task, id result) {
+    [self.network postWithAction:@"" params:params success:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
         
-    } failure:^(NSURLSessionDataTask *task, NSString *reason) {
+    } failure:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
         
     }];
 }

@@ -25,12 +25,12 @@ PODS:
     - XCCategory (~> 1.0.6)
   - XCBaseModule/Network (0.0.6):
     - XCMacros (~> 1.0.2)
-    - XCNetworking (~> 0.0.2)
+    - XCNetworking (~> 0.0.3)
   - XCBaseModule/Tools (0.0.6):
     - XCMacros (~> 1.0.2)
   - XCCategory (1.0.8)
   - XCMacros (1.0.2)
-  - XCNetworking (0.0.2):
+  - XCNetworking (0.0.3):
     - AFNetworking (~> 3.1.0)
     - XCMacros (~> 1.0.2)
 
@@ -50,10 +50,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  XCBaseModule: 5c315e44a6efb4144c7dfb5e9b1e54108ed514ac
+  XCBaseModule: 4bcc3401f0d74371cb2b57b41989833a30c23b32
   XCCategory: a8f630c77523305d4f681e41027e6b87934c884e
   XCMacros: abf7c03e5128fea2e800887a7b25c82336c3940b
-  XCNetworking: 210617d4391bd361ea1c088385ed61f99d8a3d65
+  XCNetworking: 68b9b83a3367327e1d7b0a1d3e4747403bd355d7
 
 PODFILE CHECKSUM: 439cd66f24b5ce190a777d087326c066415ad175
 

@@ -15,7 +15,7 @@
 #import <XCBaseModule/XCUserService.h>
 
 /// 接口请求总地址
-#define SERVICE_URL @"xxx"
+#define SERVICE_URL @"http://39.108.127.45:8080/lkj_app/"
 
 
 @implementation XCAppDelegate (XCNetwork)
@@ -41,7 +41,7 @@
             // 解析错误...略
             resultM.message = @"获取数据失败";
             resultM.status = XCUserNetworkResultStatusFailure;
-            resultM.resultCode = ((NSError *)resultM).code;
+            resultM.resultCode = ((NSError *)resultM.result).code;
             return;
         }
         

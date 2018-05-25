@@ -19,19 +19,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+}
+
+#pragma mark - 🎬 👀 Action Method 👀
+
+- (IBAction)didClickLoginButtonAction:(id)sender
+{
     /// 发送网络请求
     [self sendRequest];
 }
+
 
 #pragma mark - 🛰 🌐 Network Method 🌐
 
 - (void)sendRequest
 {
-    [[XCUserService shareInstance] testNetworkServiceWithUserId:@"" token:@"" success:^(NSURLSessionDataTask *task, id result) {
+    [[XCUserService shareInstance] testNetworkServiceWithUserId:@"xxx" token:@"xxx" success:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
         
-    } failure:^(NSURLSessionDataTask *task, NSString *reason) {
+        NSLog(@"成功*******成功");
         
+    } failure:^(NSURLSessionDataTask *task, XCUserNetworkResult *resultM) {
+        
+        NSLog(@"失败*******失败");
     }];
 }
 
