@@ -12,6 +12,7 @@
 
 #import "XCAppConfigure.h"
 #import "NSBundle+XCLoad.h"
+#import "NSNull+XCSafe.h"
 #import "NSObject+XCLog.h"
 #import "UIImage+XCLoad.h"
 #import "UIView+XCLoad.h"

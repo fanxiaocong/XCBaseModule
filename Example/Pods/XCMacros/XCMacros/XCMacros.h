@@ -324,7 +324,7 @@ return _instace; \
 #pragma mark - 👀 Dispatch 函数 👀 💤
 /* 🐖 ***************************** 🐖 Dispatch 函数 🐖 *****************************  🐖 */
 /// 异步纯种操作
-static inline void DispatchAscyncOnGloabalQueue(void(^block)())
+static inline void DispatchAscyncOnGloabalQueue(void(^block)(void))
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
@@ -336,7 +336,7 @@ static inline void DispatchAscyncOnGloabalQueue(void(^block)())
 }
 
 /// 回归主纯种操作
-static inline void DispatchAscyncOnMainQueue(void(^block)())
+static inline void DispatchAscyncOnMainQueue(void(^block)(void))
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -348,7 +348,7 @@ static inline void DispatchAscyncOnMainQueue(void(^block)())
 }
 
 /// 延时操作
-static inline void DispatchAfter(int64_t time, void(^block)())
+static inline void DispatchAfter(int64_t time, void(^block)(void))
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
