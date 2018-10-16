@@ -44,6 +44,7 @@ static XCUserService *_instance = nil;
     service.network.baseURL = baseURL;
     service.network.configurePrepareReuqestBlock = prepareBlock;
     service.network.configureRequestResultBlock  = resultBlock;
+    service->_prepareBlock = prepareBlock;
 }
 
 @end
