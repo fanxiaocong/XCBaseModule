@@ -137,7 +137,7 @@
                             [self handleRequestResultWithTask:task result:result isSuccess:YES success:success failure:failure];
                         }
                         failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+                            
                             /// 处理请求结果
                             [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
                         }];
@@ -217,6 +217,33 @@
                       }];
 }
 
+- (void)uploadFileWithAction:(NSString *)action
+                      params:(NSDictionary *)params
+                        data:(NSData *)data
+               directoryName:(NSString *)directoryName
+                    fileName:(NSString *)fileName
+                    progress:(XCNetworkProgressBlock)progress
+                     success:(XCNetworkResultBlock)success
+                     failure:(XCNetworkResultBlock)failure
+{
+    [self uploadFileWithURL:[self.baseURL stringByAppendingString:action]
+                 parameters:params
+                       data:data
+              directoryName:directoryName
+                   fileName:fileName
+                   progress:progress
+                    success:^(NSURLSessionDataTask *task, id result) {
+                        
+                        /// 处理请求结果
+                        [self handleRequestResultWithTask:task result:result isSuccess:YES success:success failure:failure];
+                    }
+                    failure:^(NSURLSessionDataTask *task, NSError *error) {
+                        
+                        /// 处理请求结果
+                        [self handleRequestResultWithTask:task result:error isSuccess:NO success:success failure:failure];
+                    }];
+}
+
 - (void)downloadWithURL:(NSString *)url
                    path:(NSString *)destinationPath
                progress:(XCNetworkProgressBlock)progress
@@ -227,13 +254,13 @@
           destinationPath:destinationPath
                  progress:progress
                   success:^(NSURLResponse *response, NSURL *filePath) {
-        
+                      
                       if (success) {
                           success(response, filePath, NULL);
                       }
                       
                   } failure:^(NSURLResponse *response, NSError *error) {
-        
+                      
                       if (failure) {
                           failure(response, NULL, error);
                       }

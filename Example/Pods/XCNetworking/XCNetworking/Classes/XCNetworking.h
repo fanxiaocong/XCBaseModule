@@ -99,6 +99,28 @@
 
 
 /**
+ *  上传文件
+ *
+ *  @param url              接口请求全地址
+ *  @param parameters       参数
+ *  @param data             文件数据
+ *  @param directoryName    服务器上存放图片的文件夹名称
+ *  @param fileName         文件名称
+ *  @param progress         上传进度
+ *  @param success          请求成功的回调
+ *  @param failure          请求失败的回调
+ */
+- (void)uploadFileWithURL:(NSString *)url
+               parameters:(NSDictionary *)parameters
+                     data:(NSData *)data
+            directoryName:(NSString *)directoryName
+                 fileName:(NSString *)fileName
+                 progress:(void(^)(NSProgress *p))progress
+                  success:(void(^)(NSURLSessionDataTask *task, id result))success
+                  failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+
+/**
  *  下载文件
  *
  *  @param url              文件地址

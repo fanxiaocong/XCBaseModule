@@ -73,15 +73,19 @@ fprintf(stderr, "-------------------\n");   \
 /* 🐖 ***************************** 🐖 设备型号 🐖 *****************************  🐖 */
 
 /** 判断是否是iPhone4、iPhone5、iPhone6、iPhone6p 竖屏模式 */
-#define IS_IPHONE4              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_4              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 
-#define IS_IPHONE5              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_5              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
-#define IS_IPHONE6              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_6              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
 
-#define IS_IPHONE6P              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_6P             ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
 
-#define IS_IPHONEX              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_X              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_IPHONE_XR             ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_IPHONE_XS_MAX         ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) : NO)
 
 /// 判断是否是 iPhone
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -108,6 +112,7 @@ fprintf(stderr, "-------------------\n");   \
 #define iOS9_OR_LATER   (IS_EQUAL_OR_LATER_IOS(9.0))
 #define iOS10_OR_LATER  (IS_EQUAL_OR_LATER_IOS(10.0))
 #define iOS11_OR_LATER  (IS_EQUAL_OR_LATER_IOS(11.0))
+#define iOS12_OR_LATER  (IS_EQUAL_OR_LATER_IOS(12.0))
 /* 🐖 ***************************** 🐖 系统版本 🐖 *****************************  🐖 */
 
 
@@ -145,14 +150,17 @@ fprintf(stderr, "-------------------\n");   \
 
 #pragma mark - 👀 尺寸 👀 💤
 /* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
+/// 标记是否是 iphoneX 系列的手机
+#define IS_IPHONE_X_    (IS_IPHONE_X || IS_IPHONE_XR || IS_IPHONE_XS_MAX)
+
 /// 状态栏高度
-#define STARTUS_BAR_HEIGHT       (IS_IPHONEX ? 44.f : 20.f)
+#define STARTUS_BAR_HEIGHT       (IS_IPHONE_X_ ? 44.f : 20.f)
 
 /// navBar方式
 #define NAVIGATION_BAR_HEIGHT    44
 
 /// tabBar高度
-#define TAB_BAR_HEIGHT           (IS_IPHONEX ? (49.f+34.f) : 49.f)
+#define TAB_BAR_HEIGHT           (IS_IPHONE_X_ ? (49.f+34.f) : 49.f)
 
 /// 状态栏 和 navBar 的高度
 #define STATUS_AND_NAVIGATION_BAR_HEIGHT    (STARTUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)

@@ -99,6 +99,27 @@ typedef void(^XCNetworkDownloadBlock) (NSURLResponse *response, NSURL *filePath,
                       failure:(XCNetworkResultBlock)failure;
 
 /**
+ *  上传文件
+ *
+ *  @param action           接口名称
+ *  @param params           参数
+ *  @param data             文件数据
+ *  @param directoryName    服务器上存放图片的文件夹名称
+ *  @param fileName         文件名称
+ *  @param progress         上传进度
+ *  @param success          请求成功的回调
+ *  @param failure          请求失败的回调
+ */
+- (void)uploadFileWithAction:(NSString *)action
+                      params:(NSDictionary *)params
+                        data:(NSData *)data
+               directoryName:(NSString *)directoryName
+                    fileName:(NSString *)fileName
+                    progress:(XCNetworkProgressBlock)progress
+                     success:(XCNetworkResultBlock)success
+                     failure:(XCNetworkResultBlock)failure;
+
+/**
  *  下载文件
  *
  *  @param url              文件地址

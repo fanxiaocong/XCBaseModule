@@ -67,7 +67,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"请求结果失败 原因:%@", error.localizedDescription);
-
+        
         if (failure) {  /// 失败
             failure(task, error);
         }
@@ -188,6 +188,54 @@
     DLog(@"请求结束：******************** POST 图片上传 ********************");
 }
 
+- (void)uploadFileWithURL:(NSString *)url
+               parameters:(NSDictionary *)parameters
+                     data:(NSData *)data
+            directoryName:(NSString *)directoryName
+                 fileName:(NSString *)fileName
+                 progress:(void(^)(NSProgress *p))progress
+                  success:(void(^)(NSURLSessionDataTask *task, id result))success
+                  failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    DLog(@"请求开始：******************** POST 文件上传 ********************");
+    
+    /// 配置请求的基本配置
+    [self prepareForRequest];
+    
+    DLog(@"请求地址：%@", url);
+    DLog(@"请求参数：%@", parameters);
+    
+    /// 开始上传
+    [self.manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        // 表单提交
+        [formData appendPartWithFileData:data name:directoryName fileName:fileName mimeType:@"audio/mp3"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        // 上传进度
+        if (progress) {
+            progress(uploadProgress);
+        }
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        DLog(@"responseObject:  %@", responseObject);
+        
+        if (success) {  /// 成功
+            success(task, responseObject);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        DLog(@"请求结果失败 原因:%@", error.localizedDescription);
+        
+        if (failure) {  /// 失败
+            failure(task, error);
+        }
+    }];
+    
+    DLog(@"请求结束：******************** POST 文件上传 ********************");
+}
+
 
 - (void)downloadWithURL:(NSString *)url
         destinationPath:(NSString *)destinationPath
@@ -196,7 +244,7 @@
                 failure:(void(^)(NSURLResponse *response, NSError *error))failure
 {
     DLog(@"请求开始：******************** 文件下载 ********************");
-
+    
     // 远程地址
     NSURL *URL = [NSURL URLWithString:url];
     
@@ -204,12 +252,12 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     self.downloadManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-
+    
     // 请求
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     // 下载Task操作
-   self.downloadTask = [self.downloadManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+    self.downloadTask = [self.downloadManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
         // 下载进度
         progress(downloadProgress);
