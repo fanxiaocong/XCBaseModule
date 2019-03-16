@@ -38,7 +38,7 @@
     NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     
     /// 弹出 警告框
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"发现新版本\n" message:content preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"发现新版本\n\n" message:content preferredStyle:UIAlertControllerStyleAlert];
     
     [alertVc setValue:attrStr forKeyPath:@"_attributedMessage"];
     

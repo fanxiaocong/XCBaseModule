@@ -8,7 +8,7 @@
 
 #import "XCViewController.h"
 #import "XCUserService+XCTestService.h"
-
+#import <XCBaseModule/XCVersionUpdateTool.h>
 
 @interface XCViewController ()
 
@@ -19,6 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [XCVersionUpdateTool checkNewVersion:@"1.1" content:@"版本更新啦！" appURL:@"xxx"];
 }
 
 #pragma mark - 🎬 👀 Action Method 👀
