@@ -31,18 +31,27 @@
     _downloadManager = downloadManager;
 }
 
+#pragma mark - 🔒 👀 Privite Method 👀
+
+- (void)_print:(NSString *)logs
+{
+    if (!self.printLogEnabled)  return;
+    
+    DLog(@"%@", logs);
+}
+
 #pragma mark - 🔓 👀 Public Method 👀
 
 - (void)prepareForRequest
 {
-    DLog(@"设置请求配置开始");
+    [self _print:@"设置请求配置开始"];
     
     self.manager = [AFHTTPSessionManager manager];
     self.manager.responseSerializer.acceptableContentTypes = [self.manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     self.manager.requestSerializer.timeoutInterval = 30;
     self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    DLog(@"设置请求配置结束");
+    [self _print:@"设置请求配置结束"];
 }
 
 - (void)sendGetRequestWithURL:(NSString *)url
@@ -50,30 +59,30 @@
                       success:(void(^)(NSURLSessionDataTask *task, id result))success
                       failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    DLog(@"请求开始：******************** GET ********************");
-    
+    [self _print:@"请求开始：******************** GET ********************"];
+        
     /// 配置请求的基本配置
     [self prepareForRequest];
     
-    DLog(@"请求地址：%@", url);
-    DLog(@"请求参数：%@", parameters);
-    
-    [self.manager GET:url parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"responseObject:  %@", responseObject);
+    [self _print:[NSString stringWithFormat:@"请求地址：%@", url]];
+    [self _print:[NSString stringWithFormat:@"请求参数：%@", parameters]];
         
+    @weakify(self);
+    [self.manager GET:url parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"responseObject：%@", responseObject]];
         if (success) {  /// 成功
             success(task, responseObject);
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"请求结果失败 原因:%@", error.localizedDescription);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"请求结果失败 原因：%@", error.localizedDescription]];
         if (failure) {  /// 失败
             failure(task, error);
         }
     }];
     
-    DLog(@"请求结束：******************** GET ********************");
+    [self _print:@"请求结束：******************** GET *******************"];
 }
 
 - (void)sendPostRequestWithURL:(NSString *)url
@@ -81,30 +90,30 @@
                        success:(void(^)(NSURLSessionDataTask *task, id result))success
                        failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    DLog(@"请求开始：******************** POST ********************");
+    [self _print:@"请求开始：******************** POST ********************"];
     
     /// 配置请求的基本配置
     [self prepareForRequest];
     
-    DLog(@"请求地址：%@", url);
-    DLog(@"请求参数：%@", parameters);
+    [self _print:[NSString stringWithFormat:@"请求地址：%@", url]];
+    [self _print:[NSString stringWithFormat:@"请求参数：%@", parameters]];
     
+    @weakify(self);
     [self.manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"responseObject:  %@", responseObject);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"responseObject：%@", responseObject]];
         if (success) {  /// 成功
             success(task, responseObject);
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"请求结果失败 原因:%@", error.localizedDescription);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"请求结果失败 原因：%@", error.localizedDescription]];
         if (failure) {  /// 失败
             failure(task, error);
         }
     }];
     
-    DLog(@"请求结束：******************** POST ********************");
+    [self _print:@"请求结束：******************** POST ********************"];
 }
 
 
@@ -146,15 +155,16 @@
                     success:(void(^)(NSURLSessionDataTask *task, id result))success
                     failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    DLog(@"请求开始：******************** POST 图片上传 ********************");
+    [self _print:@"请求开始：********************  POST 图片上传 ********************"];
     
     /// 配置请求的基本配置
     [self prepareForRequest];
     
-    DLog(@"请求地址：%@", url);
-    DLog(@"请求参数：%@", parameters);
+    [self _print:[NSString stringWithFormat:@"请求地址：%@", url]];
+    [self _print:[NSString stringWithFormat:@"请求参数：%@", parameters]];
     
     /// 开始上传
+    @weakify(self);
     [self.manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         // 表单提交
@@ -171,21 +181,21 @@
         }
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"responseObject:  %@", responseObject);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"responseObject：%@", responseObject]];
         if (success) {  /// 成功
             success(task, responseObject);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"请求结果失败 原因:%@", error.localizedDescription);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"请求结果失败 原因：%@", error.localizedDescription]];
         if (failure) {  /// 失败
             failure(task, error);
         }
     }];
     
-    DLog(@"请求结束：******************** POST 图片上传 ********************");
+    [self _print:@"请求结束：******************** POST 图片上传 ********************"];
 }
 
 - (void)uploadFileWithURL:(NSString *)url
@@ -197,15 +207,16 @@
                   success:(void(^)(NSURLSessionDataTask *task, id result))success
                   failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-    DLog(@"请求开始：******************** POST 文件上传 ********************");
-    
+    [self _print:@"请求开始：********************  POST 文件上传 ********************"];
+
     /// 配置请求的基本配置
     [self prepareForRequest];
     
-    DLog(@"请求地址：%@", url);
-    DLog(@"请求参数：%@", parameters);
+    [self _print:[NSString stringWithFormat:@"请求地址：%@", url]];
+    [self _print:[NSString stringWithFormat:@"请求参数：%@", parameters]];
     
     /// 开始上传
+    @weakify(self);
     [self.manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         // 表单提交
@@ -219,21 +230,21 @@
         }
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DLog(@"responseObject:  %@", responseObject);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"responseObject：%@", responseObject]];
         if (success) {  /// 成功
             success(task, responseObject);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"请求结果失败 原因:%@", error.localizedDescription);
-        
+        @strongify(self);
+        [self _print:[NSString stringWithFormat:@"请求结果失败 原因：%@", error.localizedDescription]];
         if (failure) {  /// 失败
             failure(task, error);
         }
     }];
     
-    DLog(@"请求结束：******************** POST 文件上传 ********************");
+    [self _print:@"请求开始：********************  文件上传 ********************"];
 }
 
 
@@ -243,7 +254,7 @@
                 success:(void(^)(NSURLResponse *response, NSURL *filePath))success
                 failure:(void(^)(NSURLResponse *response, NSError *error))failure
 {
-    DLog(@"请求开始：******************** 文件下载 ********************");
+    [self _print:@"请求开始：******************** 文件下载 ********************"];
     
     // 远程地址
     NSURL *URL = [NSURL URLWithString:url];
@@ -257,13 +268,14 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     // 下载Task操作
+    @weakify(self);
     self.downloadTask = [self.downloadManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
         // 下载进度
         progress(downloadProgress);
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        
+        @strongify(self);
         if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath])
         {
             [[NSFileManager defaultManager] createDirectoryAtPath:destinationPath withIntermediateDirectories:YES attributes:nil error:nil];
@@ -272,7 +284,8 @@
         // 文件的下载路径
         NSString *filePath = [destinationPath stringByAppendingPathComponent:response.suggestedFilename];
         
-        DLog(@"文件下载路径：   %@", filePath);
+        
+        [self _print:[NSString stringWithFormat:@"文件下载路径：   %@", filePath]];
         
         return [NSURL fileURLWithPath:filePath];
         
@@ -294,7 +307,7 @@
     //开始启动任务
     [self.downloadTask resume];
     
-    DLog(@"请求结束：******************** 文件下载 ********************");
+    [self _print:@"请求结束：******************** 文件下载 ********************"];
 }
 
 - (void)cancelDownloadRequest
@@ -303,8 +316,6 @@
     {
         [self.downloadTask cancel];
     }
-    
-    DLog(@"取消请求  结束。");
 }
 
 @end

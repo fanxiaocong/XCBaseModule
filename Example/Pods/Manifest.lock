@@ -14,31 +14,31 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - XCBaseModule (0.0.10):
-    - XCBaseModule/AppConfigure (= 0.0.10)
-    - XCBaseModule/Category (= 0.0.10)
-    - XCBaseModule/Network (= 0.0.10)
-    - XCBaseModule/Tools (= 0.0.10)
-  - XCBaseModule/AppConfigure (0.0.10):
+  - XCBaseModule (0.0.11):
+    - XCBaseModule/AppConfigure (= 0.0.11)
+    - XCBaseModule/Category (= 0.0.11)
+    - XCBaseModule/Network (= 0.0.11)
+    - XCBaseModule/Tools (= 0.0.11)
+  - XCBaseModule/AppConfigure (0.0.11):
     - XCCategory (~> 1.0.6)
-  - XCBaseModule/Category (0.0.10):
+  - XCBaseModule/Category (0.0.11):
     - XCCategory (~> 1.0.6)
-  - XCBaseModule/Network (0.0.10):
-    - XCMacros (~> 1.0.2)
-    - XCNetworking (~> 0.0.4)
-  - XCBaseModule/Tools (0.0.10):
+  - XCBaseModule/Network (0.0.11):
+    - XCMacros
+    - XCNetworking
+  - XCBaseModule/Tools (0.0.11):
     - XCMacros (~> 1.0.2)
   - XCCategory (1.0.8)
-  - XCMacros (1.0.4)
-  - XCNetworking (0.0.4):
+  - XCMacros (1.0.5)
+  - XCNetworking (0.0.5):
     - AFNetworking (~> 3.1.0)
-    - XCMacros (~> 1.0.2)
+    - XCMacros
 
 DEPENDENCIES:
   - XCBaseModule (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - XCCategory
     - XCMacros
@@ -50,11 +50,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  XCBaseModule: e8a2c11a361263db5397060a4d2d45d001669328
+  XCBaseModule: b922226140e2dd572a318b09c498c93a23cfb999
   XCCategory: a8f630c77523305d4f681e41027e6b87934c884e
-  XCMacros: 5509e1b14c53119da138e1f4ce7ba1766f06ad35
-  XCNetworking: 5a62c4ccb46db252d87738167d4abc1029996d44
+  XCMacros: 65ea17822e4de6e1e12cacf05d57b619ef196c2f
+  XCNetworking: 85876c4ee5b9a9a7f8b7e0f29d6a55466351759f
 
 PODFILE CHECKSUM: 439cd66f24b5ce190a777d087326c066415ad175
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.1

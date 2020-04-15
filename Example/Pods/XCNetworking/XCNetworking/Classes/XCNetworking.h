@@ -21,6 +21,8 @@
 @property (strong, nonatomic, readonly) AFHTTPSessionManager *manager;
 /** 👀 下载管理类 👀 */
 @property (strong, nonatomic, readonly) AFURLSessionManager *downloadManager;
+/// 是否打印日志，默认 NO
+@property (assign, nonatomic) BOOL printLogEnabled;
 
 
 /**
